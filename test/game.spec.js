@@ -68,6 +68,37 @@ describe('Game Module', function() {
 
       assert.equal(resultGrid[1][1], 1);
     });
+
+    it('blinker', function() {
+      var grid = game.createGrid(5, 5);
+      grid[0][0] = 1;
+      grid[0][1] = 1;
+      grid[0][2] = 1;
+
+      var grid = game.evolve(grid, 5, 5);
+
+      assert.equal(grid[0][0], 0);
+      assert.equal(grid[0][1], 1);
+      assert.equal(grid[0][2], 0);
+      assert.equal(grid[1][0], 0);
+      assert.equal(grid[1][1], 1);
+      assert.equal(grid[1][2], 0);
+      assert.equal(grid[4][0], 0);
+      assert.equal(grid[4][1], 1);
+      assert.equal(grid[4][2], 0);
+
+      var grid = game.evolve(grid, 5, 5);
+
+      assert.equal(grid[0][0], 1);
+      assert.equal(grid[0][1], 1);
+      assert.equal(grid[0][2], 1);
+      assert.equal(grid[1][0], 0);
+      assert.equal(grid[1][1], 0);
+      assert.equal(grid[1][2], 0);
+      assert.equal(grid[4][0], 0);
+      assert.equal(grid[4][1], 0);
+      assert.equal(grid[4][2], 0);
+    });
   });
 
   describe('#getNeighbourCount', function() {
